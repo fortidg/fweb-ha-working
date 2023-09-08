@@ -1,6 +1,6 @@
 name                    = "terraform-fweb1-qwiklab"
 name2                    = "terraform-fweb2-qwiklab"
-machine                 = "n2-standard-4"
+machine                 = "n2-standard-2"
 # FortiWeb Image name
 # image                   = "<IMAGE>"
 image                   = "fwb-703-payg-09122022-002-w-license"
