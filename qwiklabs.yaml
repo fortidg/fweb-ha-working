@@ -1,0 +1,62 @@
+schema_version: 2
+default_locale: en
+title: 'FortiWeb: Attack Juice Shop'
+description: This lab is intended for network administrators interested in protecting web applications, deployed in GCP.
+instruction:
+  type: md
+  uri: instructions/en.md
+duration: 60
+max_duration: 90
+credits: 0
+level: intermediate
+tags:
+product_tags:
+- Compute
+- Compute Engine
+- Networking
+role_tags:
+- cloud architect
+- network operations
+domain_tags:
+- infrastructure
+resources: []
+environment:
+  resources:
+  - type: gcp_project
+    id: protected_project
+    startup_script:
+      type: qwiklabs
+      path: fweb-juice
+    ssh_key_user: user
+  - type: gcp_user
+    id: user
+    permissions:
+    - project: protected_project
+      roles:
+      - roles/owner
+    - project: kali_project
+      roles:
+      - roles/owner
+  - type: gcp_project
+    id: kali_project
+    startup_script:
+      type: qwiklabs
+      path: kali
+  student_visible_outputs:
+  - label: Open Console
+    reference: protected_project.console_url
+  - label: GCP Username
+    reference: user.username
+  - label: GCP Password
+    reference: user.password
+  - label: Protected Project ID
+    reference: protected_project.project_id
+  - label: Kali Project ID
+    reference: kali_project.project_id
+  - label: FortiWeb Public IP
+    reference: protected_project.startup_script.FortiWeb-IP
+  - label: FortiWeb Password
+    reference: protected_project.startup_script.FortiWeb-InstanceId
+  - label: Kali Public IP
+    reference: kali_project.startup_script.Kali-IP
+ 
